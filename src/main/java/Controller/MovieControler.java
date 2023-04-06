@@ -1,13 +1,13 @@
 package Controller;
 
 
-import Data.CategoryItems;
+import Data.CatalogItems;
 
 import java.util.List;
 
 public class MovieControler {
 
-    public List<CategoryItems> getCatalog(String userid){
+    public List<CatalogItems> getCatalog(String userid){
 
 
     }

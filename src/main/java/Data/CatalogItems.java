@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class CategoryItems {
+public class CatalogItems {
 
 //    public CategoryItems(String name,String description,int rating){
 //
