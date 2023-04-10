@@ -6,22 +6,23 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
-@AllArgsConstructor
 @Data
 public class CatalogItems {
 
-//    public CategoryItems(String name,String description,int rating){
-//
-//        this.name=name;
-//        this.description=description;
-//        this.rating=rating;
-//
-//    }
+
 
 
     private String name;
     private String description;
     private int rating;
+
+    public CatalogItems(String name,String description,int rating){
+
+        this.name=name;
+        this.description=description;
+        this.rating=rating;
+
+    }
 
 
 }
