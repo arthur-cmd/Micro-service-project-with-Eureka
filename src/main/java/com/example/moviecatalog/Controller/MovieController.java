@@ -5,6 +5,7 @@ package com.example.moviecatalog.Controller;
 import com.example.moviecatalog.Data.CatalogItems;
 import com.example.moviecatalog.Data.Movie;
 import com.example.moviecatalog.Data.Rating;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,12 +20,12 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api")
 public class MovieController {
-
-
+@Autowired
+private RestTemplate restTemplate;
 
     @GetMapping ("{userid}")
     public List<CatalogItems> getCatalog(@PathVariable ("userid")  String userid){
-        RestTemplate restTemplate= new RestTemplate();
+        //RestTemplate restTemplate= new RestTemplate();
         //get rated movie ids
 
         List<Rating> ratings = Arrays.asList(
