@@ -5,6 +5,7 @@ package com.example.moviecatalog.Controller;
 import com.example.moviecatalog.Data.CatalogItems;
 import com.example.moviecatalog.Data.Movie;
 import com.example.moviecatalog.Data.Rating;
+import com.example.moviecatalog.Data.UserRating;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,24 +26,22 @@ private RestTemplate restTemplate;
 
     @GetMapping ("{userid}")
     public List<CatalogItems> getCatalog(@PathVariable ("userid")  String userid){
-        //RestTemplate restTemplate= new RestTemplate();
+        RestTemplate restTemplate= new RestTemplate();
         //get rated movie ids
 
-        List<Rating> ratings = Arrays.asList(
-                new Rating("56y7",9),
-                new Rating("o107",6)
-
-        );
+        UserRating ratings = restTemplate.getForObject("http://movie-rating/MovieRating/user/" + userid, UserRating.class);
 
 
         //get information of each rated movie ids
-        return ratings.stream().map(rating ->{
-               Movie movie = restTemplate.getForObject("http://localhost:8080/MovieInfo/"+ rating.getMovieId(),Movie.class);
+        return ratings.getUserRating().stream().map(rating ->{
+               Movie movie = restTemplate.getForObject("http://movie-info/MovieInfo/"+ rating.getMovieId(),Movie.class);
+
+            //put them all together
                return new CatalogItems(movie.getName(), movie.getDescription(), rating.getRating());
                 } ) .collect(Collectors.toList());
 
 
-        //put them all together
+
 
 
 
